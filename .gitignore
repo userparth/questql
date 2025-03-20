@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.venv/
+Pipfile
+Pipfile.lock
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Kaggle API credentials
+kaggle.json
+
+# Data files
+*.xlsx
+*.json
+*.db
+*.sqlite3
+*.h5
+*.sav
+
+# Logs
+logs/
+*.log
+debug.log
+
+# PyCharm specific
+.idea/
+*.iml
+*.pyc
+
+# Model files
+*.h5
+*.pb
+*.tflite
+*.onnx
+*.joblib
+
+# Other cache files
+.DS_Store
+Thumbs.db
+
+data/*
+t5_sql_custom_model/*
+t5_sql_model/*
+
+data/.*
+t5_sql_custom_model/.*
+t5_sql_model/.*
