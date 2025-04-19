@@ -1,4 +1,4 @@
-# NLP-to-SQL Model
+# NLP-to-SQL Model -:local
 
 ## Project Description
 This project builds a **Natural Language to SQL (NLP-to-SQL) model** using **T5 transformers** to convert user queries into SQL statements. It enables database searches through conversational input.
