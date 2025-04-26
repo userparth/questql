@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuestQL - Natural Query to Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background-color: #f7f9fc;
+        }
+        h1 {
+            text-align: center;
+        }
+        .input-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        input[type="text"] {
+            width: 60%;
+            padding: 0.7rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 0.7rem 1.5rem;
+            margin-left: 1rem;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #e9ecef;
+        }
+        #no-results {
+            text-align: center;
+            margin-top: 2rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<h1>QuestQL: Natural Language to Data</h1>
+
+<div class="input-section">
+    <input type="text" id="nlpInput" placeholder="Ask something like 'Show me all customers from Mumbai'">
+    <button onclick="fetchData()">Run Query</button>
+</div>
+
+<div id="resultSection">
+    <table id="resultTable" style="display: none;">
+        <thead id="tableHead"></thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+    <div id="no-results" style="display: none;">No results to display.</div>
+</div>
+
+<script>
+    async function fetchData() {
+        const query = document.getElementById('nlpInput').value.trim();
+        if (!query) {
+            alert('Please enter a query.');
+            return;
+        }
+
+        // --- MOCK CALL: Replace this with real QuestQL API call ---
+        // Simulating response based on dummy data
+        const dummyResponse = {
+            columns: ["Customer Name", "City", "Purchase"],
+            rows: [
+                ["Amit Sharma", "Mumbai", "₹5000"],
+                ["Sneha Rao", "Mumbai", "₹7000"]
+            ]
+        };
+        // --- End of Mock ---
+
+        renderTable(dummyResponse);
+    }
+
+    function renderTable(data) {
+        const table = document.getElementById('resultTable');
+        const tableHead = document.getElementById('tableHead');
+        const tableBody = document.getElementById('tableBody');
+        const noResults = document.getElementById('no-results');
+
+        if (!data || !data.rows.length) {
+            table.style.display = 'none';
+            noResults.style.display = 'block';
+            return;
+        }
+
+        // Clear previous content
+        tableHead.innerHTML = '';
+        tableBody.innerHTML = '';
+
+        // Create header
+        const headerRow = document.createElement('tr');
+        data.columns.forEach(col => {
+            const th = document.createElement('th');
+            th.textContent = col;
+            headerRow.appendChild(th);
+        });
+        tableHead.appendChild(headerRow);
+
+        // Create rows
+        data.rows.forEach(rowData => {
+            const row = document.createElement('tr');
+            rowData.forEach(cellData => {
+                const td = document.createElement('td');
+                td.textContent = cellData;
+                row.appendChild(td);
+            });
+            tableBody.appendChild(row);
+        });
+
+        noResults.style.display = 'none';
+        table.style.display = 'table';
+    }
+</script>
+
+</body>
+</html>
